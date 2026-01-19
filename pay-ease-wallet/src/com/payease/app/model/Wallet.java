@@ -1,12 +1,12 @@
 package com.payease.app.model;
 
-public class Wallet {
+public class Wallet implements WalletOperations {
 
     private long walletId;
     private double balance;
-    private UserProfile owner;
+    private Profile owner;
 
-    public Wallet(long walletId, double balance, UserProfile owner) {
+    public Wallet(long walletId, double balance, Profile owner) {
         this.walletId = walletId;
         this.balance = balance;
         this.owner = owner;
@@ -15,6 +15,9 @@ public class Wallet {
     public long getWalletId() {
         return walletId;
     }
+
+    // deposit <- amount
+    // withdraw <- amount
 
     public void setWalletId(long walletId) {
         this.walletId = walletId;
@@ -28,11 +31,30 @@ public class Wallet {
         this.balance = balance;
     }
 
-    public UserProfile getOwner() {
+    public Profile getOwner() {
         return owner;
     }
 
-    public void setOwner(UserProfile owner) {
+    public void setOwner(Profile owner) {
         this.owner = owner;
+    }
+
+    @Override
+    public String toString() {
+        return "Wallet{" +
+                "walletId=" + walletId +
+                ", balance=" + balance +
+                ", owner=" + owner +
+                '}';
+    }
+
+    @Override
+    public void deposit(double amount) {
+
+    }
+
+    @Override
+    public void withdraw(double amount) {
+
     }
 }

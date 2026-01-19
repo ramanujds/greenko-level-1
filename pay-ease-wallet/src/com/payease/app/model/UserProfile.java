@@ -1,26 +1,21 @@
 package com.payease.app.model;
 
-public class UserProfile {
+public class UserProfile extends Profile {
 
-    private int userId;
     private String fullName;
-    private String email;
-    private String phoneNo;
+
+
 
     public UserProfile(int userId, String fullName, String email, String phoneNo) {
-        this.userId = userId;
+        super(userId,email,phoneNo);
         this.fullName = fullName;
-        this.email = email;
-        this.phoneNo = phoneNo;
     }
 
-    public int getUserId() {
-        return userId;
+    @Override
+    public void showDetails(){
+        System.out.println("User Profile details : ..");
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
 
     public String getFullName() {
         return fullName;
@@ -30,19 +25,16 @@ public class UserProfile {
         this.fullName = fullName;
     }
 
-    public String getEmail() {
-        return email;
+
+    @Override
+    public String toString() {
+        return "UserProfile{" +
+                "userId=" + userId +
+                ", fullName='" + fullName + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNo='" + phoneNo + '\'' +
+                '}';
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
-    public String getPhoneNo() {
-        return phoneNo;
-    }
-
-    public void setPhoneNo(String phoneNo) {
-        this.phoneNo = phoneNo;
-    }
 }
