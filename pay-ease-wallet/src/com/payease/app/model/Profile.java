@@ -10,6 +10,9 @@ public abstract class Profile {
         this.email = email;
         this.phoneNo = phoneNo;
     }
+    public Profile(){
+
+    }
 
     public abstract void showDetails();
 
