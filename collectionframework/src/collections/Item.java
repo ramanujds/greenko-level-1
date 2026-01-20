@@ -2,7 +2,7 @@ package collections;
 
 import java.util.Objects;
 
-public class Item implements Comparable<Item> {
+public class Item {
 	
 	private int id;
 	private String name;
@@ -38,7 +38,7 @@ public class Item implements Comparable<Item> {
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, name);
+		return Objects.hash(id);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -49,13 +49,15 @@ public class Item implements Comparable<Item> {
 		if (getClass() != obj.getClass())
 			return false;
 		Item other = (Item) obj;
-		return id == other.id && Objects.equals(name, other.name);
+		return id == other.id;
 	}
+	
+	
 
 	
-	public int compareTo(Item next) {
-		return this.id-next.id;
-	}
+//	public int compareTo(Item next) {
+//		return Double.compare(price, next.price);
+//	}
 	
 	
 	
