@@ -1,6 +1,8 @@
 package com.greenko.assetmanagement.repository;
 
 import com.greenko.assetmanagement.model.Asset;
+import com.greenko.assetmanagement.model.AssetHealth;
+import com.greenko.assetmanagement.model.AssetStatus;
 
 import java.util.List;
 
@@ -14,5 +16,8 @@ public interface AssetRepository {
 
     void deleteAsset(String name);
 
+    List<Asset> findAssetsByStatus(AssetStatus status);
+    List<Asset> findAssetsByHealth(AssetHealth health);
+    List<Asset> findAssetByType(Asset type);
 
 }
