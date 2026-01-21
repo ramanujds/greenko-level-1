@@ -18,12 +18,15 @@ public class AssetRepositoryImpl implements AssetRepository{
     }
 
     public Asset findByName(String name) {
-        for (var asset:assets){
-            if(asset.getName().equalsIgnoreCase(name)){
-                return asset;
-            }
-        }
-        throw new AssetNotFoundException("Asset with name "+name+" not found");
+//        for (var asset:assets){
+//            if(asset.getName().equalsIgnoreCase(name)){
+//                return asset;
+//            }
+//        }
+//        throw new AssetNotFoundException("Asset with name "+name+" not found");
+        return assets.stream().filter(a->a.getName().equalsIgnoreCase(name))
+                .findFirst().orElseThrow(()->new AssetNotFoundException("Asset with name "+name+" not found"));
+
     }
 
     public List<Asset> findAllAssets() {
@@ -37,7 +40,7 @@ public class AssetRepositoryImpl implements AssetRepository{
 
     public List<Asset> findAssetsByStatus(AssetStatus status) {
 
-        return List.of();
+        return assets.stream().filter(a->a.getStatus()==status).toList();
     }
 
     public List<Asset> findAssetsByHealth(AssetHealth health) {
