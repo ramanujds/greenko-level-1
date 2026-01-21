@@ -1,6 +1,9 @@
 package com.greenko.assetmanagement.repository;
 
+import com.greenko.assetmanagement.exception.AssetNotFoundException;
 import com.greenko.assetmanagement.model.Asset;
+import com.greenko.assetmanagement.model.AssetHealth;
+import com.greenko.assetmanagement.model.AssetStatus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +23,7 @@ public class AssetRepositoryImpl implements AssetRepository{
                 return asset;
             }
         }
-        return null;
+        throw new AssetNotFoundException("Asset with name "+name+" not found");
     }
 
     public List<Asset> findAllAssets() {
@@ -30,5 +33,19 @@ public class AssetRepositoryImpl implements AssetRepository{
     public void deleteAsset(String name) {
         var asset = findByName(name);
         assets.remove(asset);
+    }
+
+    public List<Asset> findAssetsByStatus(AssetStatus status) {
+
+        return List.of();
+    }
+
+    public List<Asset> findAssetsByHealth(AssetHealth health) {
+
+        return List.of();
+    }
+
+    public List<Asset> findAssetByType(Asset type) {
+        return List.of();
     }
 }

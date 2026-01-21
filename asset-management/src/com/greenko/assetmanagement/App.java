@@ -30,6 +30,9 @@ public class App {
         assetRepo.addAsset(solarPanel1);
         assetRepo.addAsset(turbine1);
 
+        var asset = assetRepo.findByName("abc");
+        System.out.println(asset);
+
 
 
 
