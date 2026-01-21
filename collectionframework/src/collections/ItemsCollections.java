@@ -25,30 +25,41 @@ public class ItemsCollections {
 		items.add(item4);
 		items.add(item5);
 		
+		// find item by id
+		
+		int id = 3;
+		
+		for(var item : items) {
+			if(item.getId()== id) {
+				System.out.println(item);
+			}
+		}
+		
+		
 		// Find all the items with price >= 50000 put in a list
 		
-		List<Item> costlyItems = new ArrayList<>();
-		
-		for(var item : items) {
-			if(item.getPrice()>=50000) {
-				costlyItems.add(item);
-			}
-		}
-		
-		System.out.println(costlyItems);
-	
-		
-		// Find the most costly item 
-		
-		Item costly = costlyItems.getFirst();
-		
-		for(var item : items) {
-			if(item.getPrice()>costly.getPrice()) {
-				costly = item;
-			}
-		}
-		
-		System.out.println(costly);
+//		List<Item> costlyItems = new ArrayList<>();
+//		
+//		for(var item : items) {
+//			if(item.getPrice()>=50000) {
+//				costlyItems.add(item);
+//			}
+//		}
+//		
+//		System.out.println(costlyItems);
+//	
+//		
+//		// Find the most costly item 
+//		
+//		Item costly = costlyItems.getFirst();
+//		
+//		for(var item : items) {
+//			if(item.getPrice()>costly.getPrice()) {
+//				costly = item;
+//			}
+//		}
+//		
+//		System.out.println(costly);
 		
 		
 		
