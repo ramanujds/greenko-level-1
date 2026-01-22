@@ -3,9 +3,13 @@ package com.greenko.assetmanagement.model;
 import java.time.LocalDate;
 import java.util.UUID;
 
-public class SolarPanel extends Asset {
+public final class SolarPanel extends Asset {
 
     private double efficiencyRating;
+
+    public void replaceCells(){
+        System.out.println("Cells are replaced");
+    }
 
     public SolarPanel(double efficiencyRating) {
         this.efficiencyRating = efficiencyRating;

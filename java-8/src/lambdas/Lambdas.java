@@ -1,21 +1,18 @@
 package lambdas;
 
-interface Printable{
-    void print();
-}
+import java.util.List;
 
-interface MathOperation{
-    int getSquare(int num);
+interface Printable{
+    String print(String str);
+
 }
 
 
 public class Lambdas {
     public static void main(String[] args) {
-        Printable printable = () -> System.out.println("Greenko");
+        Printable printable = str -> str.toUpperCase();
+        printable.print("Hello");
 
-        MathOperation operation = n ->  n*n;
-        operation.getSquare(10);
-
-        printable.print();
+        List<Integer> nums = List.of();
     }
 }

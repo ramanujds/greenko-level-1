@@ -3,9 +3,13 @@ package com.greenko.assetmanagement.model;
 import java.time.LocalDate;
 import java.util.UUID;
 
-public class Turbine extends Asset {
+public final class Turbine extends Asset {
 
     private int bladeCount;
+
+    public void replaceBlade(){
+        System.out.println("New blades installed");
+    }
 
     public Turbine(){ }
 

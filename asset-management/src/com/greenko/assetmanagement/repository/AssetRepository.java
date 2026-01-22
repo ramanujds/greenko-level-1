@@ -6,6 +6,7 @@ import com.greenko.assetmanagement.model.AssetHealth;
 import com.greenko.assetmanagement.model.AssetStatus;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface AssetRepository {
 
@@ -20,5 +21,7 @@ public interface AssetRepository {
     List<Asset> findAssetsByStatus(AssetStatus status);
     List<Asset> findAssetsByHealth(AssetHealth health);
     List<Asset> findAssetByType(Asset type);
+
+    void maintainTurbines();
 
 }

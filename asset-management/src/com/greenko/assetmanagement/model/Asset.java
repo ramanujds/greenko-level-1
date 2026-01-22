@@ -3,7 +3,7 @@ package com.greenko.assetmanagement.model;
 import java.time.LocalDate;
 import java.util.UUID;
 
-public abstract class Asset {
+public abstract sealed class Asset permits SolarPanel,Turbine {
     private UUID id;
     private String name;
     private AssetStatus status;

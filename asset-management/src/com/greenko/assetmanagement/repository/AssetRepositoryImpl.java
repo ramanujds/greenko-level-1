@@ -4,6 +4,7 @@ import com.greenko.assetmanagement.exception.AssetNotFoundException;
 import com.greenko.assetmanagement.model.Asset;
 import com.greenko.assetmanagement.model.AssetHealth;
 import com.greenko.assetmanagement.model.AssetStatus;
+import com.greenko.assetmanagement.model.Turbine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,20 @@ import java.util.List;
 public class AssetRepositoryImpl implements AssetRepository{
 
     List<Asset> assets = new ArrayList<>();
+
+    public void maintainTurbines() {
+//        for (var asset:assets){
+//            if (asset instanceof Turbine){
+//                asset.setStatus(AssetStatus.MAINTENANCE);
+//            }
+//        }
+
+        assets.forEach(asset->{
+            if (asset instanceof Turbine){
+                asset.setStatus(AssetStatus.MAINTENANCE);
+            }
+        });
+    }
 
     public Asset addAsset(Asset asset) {
         assets.add(asset);
@@ -34,8 +49,7 @@ public class AssetRepositoryImpl implements AssetRepository{
     }
 
     public void deleteAsset(String name) {
-        var asset = findByName(name);
-        assets.remove(asset);
+        assets.removeIf(asset->asset.getName().equalsIgnoreCase(name));
     }
 
     public List<Asset> findAssetsByStatus(AssetStatus status) {
