@@ -24,4 +24,6 @@ public interface AssetRepository {
 
     void maintainTurbines();
 
+    void fixAssets();
+
 }

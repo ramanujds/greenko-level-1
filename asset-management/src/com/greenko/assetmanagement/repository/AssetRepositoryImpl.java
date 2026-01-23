@@ -1,10 +1,7 @@
 package com.greenko.assetmanagement.repository;
 
 import com.greenko.assetmanagement.exception.AssetNotFoundException;
-import com.greenko.assetmanagement.model.Asset;
-import com.greenko.assetmanagement.model.AssetHealth;
-import com.greenko.assetmanagement.model.AssetStatus;
-import com.greenko.assetmanagement.model.Turbine;
+import com.greenko.assetmanagement.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,13 +10,26 @@ public class AssetRepositoryImpl implements AssetRepository{
 
     List<Asset> assets = new ArrayList<>();
 
-    public void maintainTurbines() {
-//        for (var asset:assets){
-//            if (asset instanceof Turbine){
-//                asset.setStatus(AssetStatus.MAINTENANCE);
+    public void fixAssets() {
+//        for (Asset asset:assets){
+//            if (asset instanceof Turbine t){
+//                t.replaceBlade();
+//            } else if (asset instanceof SolarPanel s){
+//                s.replaceCells();
 //            }
 //        }
 
+        assets.forEach(asset->{
+            switch (asset){
+                case Turbine t -> t.replaceBlade();
+                case SolarPanel s -> s.replaceCells();
+                default -> System.out.println();
+            }
+        });
+
+    }
+
+    public void maintainTurbines() {
         assets.forEach(asset->{
             if (asset instanceof Turbine){
                 asset.setStatus(AssetStatus.MAINTENANCE);

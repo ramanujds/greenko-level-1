@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 
 public class StreamsExample {
 
-    static void main(String[] args) {
+    void main(String[] args) {
 
         List<Integer> nums = Arrays.asList(6,3,7,4,5,6,8);
 
@@ -21,6 +21,10 @@ public class StreamsExample {
                                 .map(n->n*n)
                                 .findFirst()
                                 .get();
+
+        String name = "Ram";
+        int age = 30;
+
 
 
     }
