@@ -47,13 +47,7 @@ public class AssetRepositoryImpl implements AssetRepository {
     }
 
     public Asset findByName(String name) {
-//        for (var asset:assets){
-//            if(asset.getName().equalsIgnoreCase(name)){
-//                return asset;
-//            }
-//        }
-//        throw new AssetNotFoundException("Asset with name "+name+" not found");
-        return assets.stream().filter(a -> a.getName().equalsIgnoreCase(name))
+         return assets.stream().filter(a -> a.getName().equalsIgnoreCase(name))
                 .findFirst().orElseThrow(() -> new AssetNotFoundException("Asset with name " + name + " not found"));
 
     }
