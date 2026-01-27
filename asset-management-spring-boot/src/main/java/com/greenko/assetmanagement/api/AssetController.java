@@ -1,5 +1,6 @@
 package com.greenko.assetmanagement.api;
 
+import com.greenko.assetmanagement.dto.AssetRequestDto;
 import com.greenko.assetmanagement.model.Asset;
 import com.greenko.assetmanagement.repository.AssetRepository;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ public class AssetController {
     }
 
     @PostMapping
-    public Asset saveAsset(@RequestBody Asset asset){
+    public Asset saveAsset(@RequestBody AssetRequestDto asset){
         return assetRepo.saveAsset(asset);
     }
 
