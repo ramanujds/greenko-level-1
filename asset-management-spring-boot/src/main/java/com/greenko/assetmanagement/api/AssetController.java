@@ -24,9 +24,25 @@ public class AssetController {
     }
 
     @GetMapping("/search")
-    public Asset findByName(@RequestParam("name") String name){
-        return assetRepo.findByName(name);
+    public List<Asset> findBy(@RequestParam(value = "name",required = false) String name,
+                              @RequestParam(value = "status", required = false) String status){
+
+        if(name!=null && status!=null){
+            // search by both
+        }
+
+        else if(name!=null){
+            // search by name
+        }
+        else if(status!=null){
+            // search by status
+        }
+
+        return assetRepo.getAllAssets();
+
     }
+
+
 
     @GetMapping("/{id}")
     public Asset getAsset(@PathVariable String id){
