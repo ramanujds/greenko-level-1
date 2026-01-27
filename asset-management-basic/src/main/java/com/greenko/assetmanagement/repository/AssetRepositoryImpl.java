@@ -6,9 +6,13 @@ import com.greenko.assetmanagement.model.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AssetRepositoryImpl implements AssetRepository{
+public class AssetRepositoryImpl implements AssetRepository {
 
-    List<Asset> assets = new ArrayList<>();
+    private List<Asset> assets = new ArrayList<>();
+
+    public List<Asset> getAssets() {
+        return assets;
+    }
 
     public void fixAssets() {
 //        for (Asset asset:assets){
@@ -19,8 +23,8 @@ public class AssetRepositoryImpl implements AssetRepository{
 //            }
 //        }
 
-        assets.forEach(asset->{
-            switch (asset){
+        assets.forEach(asset -> {
+            switch (asset) {
                 case Turbine t -> t.replaceBlade();
                 case SolarPanel s -> s.replaceCells();
                 default -> System.out.println();
@@ -30,15 +34,15 @@ public class AssetRepositoryImpl implements AssetRepository{
     }
 
     public void maintainTurbines() {
-        assets.forEach(asset->{
-            if (asset instanceof Turbine){
+        assets.forEach(asset -> {
+            if (asset instanceof Turbine) {
                 asset.setStatus(AssetStatus.MAINTENANCE);
             }
         });
     }
 
     public Asset addAsset(Asset asset) {
-        assets.add(asset);
+       assets.add(asset);
         return asset;
     }
 
@@ -49,8 +53,8 @@ public class AssetRepositoryImpl implements AssetRepository{
 //            }
 //        }
 //        throw new AssetNotFoundException("Asset with name "+name+" not found");
-        return assets.stream().filter(a->a.getName().equalsIgnoreCase(name))
-                .findFirst().orElseThrow(()->new AssetNotFoundException("Asset with name "+name+" not found"));
+        return assets.stream().filter(a -> a.getName().equalsIgnoreCase(name))
+                .findFirst().orElseThrow(() -> new AssetNotFoundException("Asset with name " + name + " not found"));
 
     }
 
@@ -59,12 +63,12 @@ public class AssetRepositoryImpl implements AssetRepository{
     }
 
     public void deleteAsset(String name) {
-        assets.removeIf(asset->asset.getName().equalsIgnoreCase(name));
+        assets.removeIf(asset -> asset.getName().equalsIgnoreCase(name));
     }
 
     public List<Asset> findAssetsByStatus(AssetStatus status) {
 
-        return assets.stream().filter(a->a.getStatus()==status).toList();
+        return assets.stream().filter(a -> a.getStatus() == status).toList();
     }
 
     public List<Asset> findAssetsByHealth(AssetHealth health) {
