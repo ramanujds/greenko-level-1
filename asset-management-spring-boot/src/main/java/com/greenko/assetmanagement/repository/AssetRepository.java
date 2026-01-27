@@ -11,7 +11,7 @@ public class AssetRepository {
 
     List<Asset> assets = new ArrayList<>();
 
-    public Asset saveAsset(AssetRequestDto asset){
+    public Asset saveAsset(AssetRequestDto asset) {
         UUID id = UUID.randomUUID();
         Asset assetToSave = new Asset(id,
                 asset.assetName(),
@@ -23,18 +23,18 @@ public class AssetRepository {
         return assetToSave;
     }
 
-    public List<Asset> getAllAssets(){
+    public List<Asset> getAllAssets() {
         return assets;
     }
 
-    public Asset findByName(String name){
-        return null;
+    public Asset findByName(String name) {
+        return assets.stream().filter(a -> a.getAssetName().equalsIgnoreCase(name))
+                .findFirst().get();
     }
 
-    public void deleteAsset(String id){
+    public void deleteAsset(String id) {
 
     }
-
 
 
 }

@@ -28,6 +28,14 @@ public class AssetController {
         return assetRepo.findByName(name);
     }
 
+    @GetMapping("/{id}")
+    public Asset getAsset(@PathVariable String id){
+        return null;
+    }
+
+    // get asset by status
+
+    // get asset by health
 
     @DeleteMapping("/{id}")
     public void deleteAsset(@PathVariable String id){
