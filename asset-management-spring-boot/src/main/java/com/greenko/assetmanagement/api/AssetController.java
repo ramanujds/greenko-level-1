@@ -3,24 +3,40 @@ package com.greenko.assetmanagement.api;
 import com.greenko.assetmanagement.dto.AssetRequestDto;
 import com.greenko.assetmanagement.model.Asset;
 import com.greenko.assetmanagement.repository.AssetRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/assets")
 public class AssetController {
 
-    private AssetRepository assetRepo = new AssetRepository();
+    private AssetRepository assetRepo;
+
+    public AssetController(AssetRepository assetRepo) {
+        this.assetRepo = assetRepo;
+    }
 
     @GetMapping
     public List<Asset> getAllAssets(){
-       return assetRepo.getAllAssets();
+       return assetRepo.findAll();
     }
 
     @PostMapping
-    public Asset saveAsset(@RequestBody AssetRequestDto asset){
-        return assetRepo.saveAsset(asset);
+    public Asset saveAsset(@RequestBody AssetRequestDto assetDto){
+        Asset asset = new Asset(
+                UUID.randomUUID().toString(),
+                assetDto.assetName(),
+                assetDto.status(),
+                assetDto.health(),
+                assetDto.installedDate(),
+                assetDto.location()
+        );
+        return assetRepo.save(asset);
+
     }
 
     @GetMapping("/search")
@@ -38,7 +54,7 @@ public class AssetController {
             // search by status
         }
 
-        return assetRepo.getAllAssets();
+        return assetRepo.findAll();
 
     }
 
@@ -46,16 +62,13 @@ public class AssetController {
 
     @GetMapping("/{id}")
     public Asset getAsset(@PathVariable String id){
-        return null;
+        return assetRepo.findById(id).get();
     }
 
-    // get asset by status
-
-    // get asset by health
 
     @DeleteMapping("/{id}")
     public void deleteAsset(@PathVariable String id){
-        assetRepo.deleteAsset(id);
+        assetRepo.deleteById(id);
     }
 
 }
