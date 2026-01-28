@@ -12,9 +12,16 @@ import java.util.Optional;
 
 public interface AssetRepository extends JpaRepository<Asset, String> {
 
-    // JPQL
-    @Query("from Asset where assetName=:assetName")
-    Optional<Asset> searchByName(String assetName);
+    List<Asset> findByAssetName(String assetName);
+
+    List<Asset> findByStatus(AssetStatus status);
+
+    List<Asset> findByHealth(AssetHealth health);
+
+    List<Asset> findByStatusAndAssetName(AssetStatus status, String assetName);
+
+    @Query("from Asset where extract(year from installedDate) =:year")
+    List<Asset> findByYear(int year);
 
 
 }

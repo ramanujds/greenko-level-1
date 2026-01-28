@@ -11,7 +11,7 @@ public class Asset {
 
     @Id
     private String assetId;
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     private String assetName;
     @Column(name = "asset_status")
     @Enumerated(EnumType.STRING)
