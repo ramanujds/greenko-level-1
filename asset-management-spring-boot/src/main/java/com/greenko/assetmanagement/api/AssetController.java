@@ -1,12 +1,16 @@
 package com.greenko.assetmanagement.api;
 
 import com.greenko.assetmanagement.dto.AssetRequestDto;
+import com.greenko.assetmanagement.dto.AssetResponseDto;
 import com.greenko.assetmanagement.model.Asset;
 import com.greenko.assetmanagement.repository.AssetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Duration;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -26,7 +30,8 @@ public class AssetController {
     }
 
     @PostMapping
-    public Asset saveAsset(@RequestBody AssetRequestDto assetDto){
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public AssetResponseDto saveAsset(@RequestBody AssetRequestDto assetDto){
         Asset asset = new Asset(
                 UUID.randomUUID().toString(),
                 assetDto.assetName(),
@@ -35,7 +40,17 @@ public class AssetController {
                 assetDto.installedDate(),
                 assetDto.location()
         );
-        return assetRepo.save(asset);
+        Asset saved = assetRepo.save(asset);
+        AssetResponseDto response = new AssetResponseDto(
+                saved.getAssetId(),
+                saved.getAssetName(),
+                saved.getStatus(),
+                saved.getHealth(),
+                saved.getInstalledDate(),
+                saved.getLocation(),
+                "Not Available"
+        );
+        return response;
 
     }
 
@@ -63,7 +78,7 @@ public class AssetController {
 
     }
 
-
+    // update asset if it is present else throw an exception
 
 
     @GetMapping("/{id}")
@@ -73,6 +88,7 @@ public class AssetController {
 
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void deleteAsset(@PathVariable String id){
         assetRepo.deleteById(id);
     }
