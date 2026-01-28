@@ -1,12 +1,16 @@
 package com.greenko.assetmanagement.model;
 
 import jakarta.persistence.*;
+import org.springframework.data.jpa.repository.Query;
 
 
 import java.time.LocalDate;
 
 
 @Entity
+@NamedQueries(
+        @NamedQuery(name = "findByHealth", query = "from Asset where health=:health")
+)
 public class Asset {
 
     @Id

@@ -41,7 +41,8 @@ public class AssetController {
 
     @GetMapping("/search")
     public List<Asset> findBy(@RequestParam(value = "name",required = false) String name,
-                              @RequestParam(value = "status", required = false) String status){
+                              @RequestParam(value = "status", required = false) String status,
+                              @RequestParam(value = "year", required = false) Integer year){
 
         if(name!=null && status!=null){
             // search by both
@@ -54,9 +55,14 @@ public class AssetController {
             // search by status
         }
 
+        else if (year!=null){
+            return assetRepo.findByYear(year);
+        }
+
         return assetRepo.findAll();
 
     }
+
 
 
 
