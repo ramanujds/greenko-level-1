@@ -1,0 +1,14 @@
+header{
+    min-height: 200px;
+    background-color: cadetblue;
+}
+
+footer{
+    min-height: 100px;
+    background-color: cornflowerblue;
+}
+
+section{
+    min-height: 400px;
+    border: 1px solid;
+}

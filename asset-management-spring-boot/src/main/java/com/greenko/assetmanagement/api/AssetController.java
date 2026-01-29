@@ -2,11 +2,13 @@ package com.greenko.assetmanagement.api;
 
 import com.greenko.assetmanagement.dto.AssetRequestDto;
 import com.greenko.assetmanagement.dto.AssetResponseDto;
+import com.greenko.assetmanagement.exception.AssetNotFoundException;
 import com.greenko.assetmanagement.model.Asset;
 import com.greenko.assetmanagement.repository.AssetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.Duration;
@@ -16,6 +18,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/assets")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AssetController {
 
     private AssetRepository assetRepo;
@@ -30,8 +33,7 @@ public class AssetController {
     }
 
     @PostMapping
-    @ResponseStatus(code = HttpStatus.CREATED)
-    public AssetResponseDto saveAsset(@RequestBody AssetRequestDto assetDto){
+    public ResponseEntity<AssetResponseDto> saveAsset(@RequestBody AssetRequestDto assetDto){
         Asset asset = new Asset(
                 UUID.randomUUID().toString(),
                 assetDto.assetName(),
@@ -50,7 +52,7 @@ public class AssetController {
                 saved.getLocation(),
                 "Not Available"
         );
-        return response;
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
 
     }
 
@@ -83,7 +85,7 @@ public class AssetController {
 
     @GetMapping("/{id}")
     public Asset getAsset(@PathVariable String id){
-        return assetRepo.findById(id).get();
+        return assetRepo.findById(id).orElseThrow(()->new AssetNotFoundException("Asset with ID:"+id+" Not found"));
     }
 
 
