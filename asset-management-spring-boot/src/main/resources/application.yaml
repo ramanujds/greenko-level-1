@@ -2,9 +2,12 @@ spring:
   application:
     name: asset-management
   datasource:
-    url: jdbc:mysql://localhost:3306/greenko
-    username: root
-    password: Pass@123
+    url: jdbc:h2:mem:greenko
+    username: sa
+    password:
+#    url: jdbc:mysql://localhost:3306/greenko
+#    username: root
+#    password: Pass@123
 
   jpa:
     hibernate:
