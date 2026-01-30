@@ -21,7 +21,10 @@ import java.util.UUID;
 //@CrossOrigin(origins = "http://127.0.0.1:5500")
 public class AssetController {
 
+
     private AssetRepository assetRepo;
+
+
 
     public AssetController(AssetRepository assetRepo) {
         this.assetRepo = assetRepo;
